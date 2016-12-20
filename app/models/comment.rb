@@ -1,4 +1,4 @@
 class Comment < ApplicationRecord
   belongs_to :user
-  has_many :city_comments
+  belongs_to :vote
 end

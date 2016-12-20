@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :comments
 
-  enum role: [:guest, :user, :admin]
+  enum role: [:anonymous, :user, :admin]
 
 end
