@@ -10,25 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220184222) do
+ActiveRecord::Schema.define(version: 20161220210541) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.string   "state"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "rank"
+    t.integer  "upvote_count",   default: 0
+    t.integer  "downvote_count", default: 0
+    t.integer  "status",         default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  create_table "city_comments", force: :cascade do |t|
+  create_table "city_vote_comments", force: :cascade do |t|
     t.integer  "comment_id"
-    t.integer  "city_id"
+    t.integer  "vote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comment_id", "vote_id"], name: "index_city_vote_comments_on_comment_id_and_vote_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "vote_id"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +55,15 @@ ActiveRecord::Schema.define(version: 20161220184222) do
     t.string   "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "status",     default: 0
+    t.integer  "type"
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end

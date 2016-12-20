@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :votes
   has_many :cities, through: :votes
 
-  enum role: [:anonymous, :user, :admin]
+  enum role: [:guest, :user, :admin]
 
 end
