@@ -4,7 +4,8 @@ class City < ApplicationRecord
   has_many :city_vote_commments
   has_many :comments, through: :city_vote_comments
 
-  enum official_status: [:non_sancutuary, :possible_sanctuary, :sanctuary]
+  #offical_status can only be changed by admins
+  enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
   enum unofficial_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
 
   def vote_count
@@ -16,7 +17,4 @@ class City < ApplicationRecord
     self.update(rank: ranking)
     end
   end
-
-  def set_unofficial_status
-    if
 end

@@ -6,9 +6,18 @@ class CitiesController < ApplicationController
   def show
   end
 
-  private
-
-  def one_user_one_vote
+  def new
   end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end 
+
+  private
 
 end
