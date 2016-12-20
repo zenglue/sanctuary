@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def update
-  end 
+  end
 
   def destroy
   end

@@ -3,7 +3,7 @@ class Vote < ApplicationRecord
   belongs_to :user
   has_one :comment
 
-  enum type: [:no_vote, :downvote, :upvote]
+  enum type: [:downvote, :upvote]
 
   def upvote(city)
       city.upvote_count.increment!
