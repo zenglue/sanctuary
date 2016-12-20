@@ -8,11 +8,12 @@ class City < ApplicationRecord
   enum unofficial_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
 
   def vote_count
-    self.upvote_count -= self.downvote_count
+    self.update(self.upvote_count -= self.downvote_count)
   end
 
   def rank
     City.all.each do |city|
+      city.order
 
 
 
