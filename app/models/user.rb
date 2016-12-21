@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :comments
-  has_many :votes
-  has_many :cities, through: :votes
+  has_many :votes, dependent: :destroy
+  has_many :upvoted_cities, through: :votes, source: :city
+  has_many :downvoted_cities, through: :votes, source: :city
 
   enum role: [:guest, :user, :admin]
 

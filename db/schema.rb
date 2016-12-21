@@ -58,12 +58,11 @@ ActiveRecord::Schema.define(version: 20161220210541) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "status",     default: 0
     t.integer  "type"
     t.integer  "city_id"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
