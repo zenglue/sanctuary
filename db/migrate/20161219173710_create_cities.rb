@@ -4,7 +4,7 @@ class CreateCities < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :state
       t.integer :rank
-      t.integer :official_status, default: 0
+      t.integer :official_status
       t.integer :unofficial_status
 
       t.timestamps
