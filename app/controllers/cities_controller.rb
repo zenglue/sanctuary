@@ -14,8 +14,10 @@ class CitiesController < ApplicationController
   end
 
   def create
-    @city = City.create(city_params)
-    redirect_to city_path(@city)
+    if current_user.admin?
+      @city = City.create(city_params)
+      redirect_to city_path(@city)
+    end
   end
 
   def upvote
@@ -49,8 +51,10 @@ class CitiesController < ApplicationController
   end
 
   def destroy
-    @city.destroy
-    redirect_to cities_path, notice: "City was removed"
+    if current_user.admin?
+      @city.destroy
+      redirect_to cities_path, notice: "City was removed"
+    end
   end
 
   private
