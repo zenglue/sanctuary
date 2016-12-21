@@ -1,8 +1,8 @@
 class CityVoteComments < ActiveRecord::Migration[5.0]
   def change
     create_table :city_vote_comments do |t|
-      t.integer :comment_id
-      t.integer :vote_id
+      t.belongs_to :comment
+      t.belongs_to :vote
 
       t.timestamps
     end
