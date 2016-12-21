@@ -1,0 +1,9 @@
+<%= form_for(@city) do |f| %>
+<%= f.label :name
+<%= f.text_field :name %>
+<%= f.label :location %>
+<%= f.text_field :location %>
+<%= f.label :official_status %>
+<%= f.select :official_status, City.official_statuses.keys %>
+<%= f.submit %>
+<% end %>
