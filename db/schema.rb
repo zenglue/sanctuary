@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(version: 20161220210541) do
     t.string   "name"
     t.string   "state"
     t.integer  "rank"
-    t.integer  "upvote_count",   default: 0
-    t.integer  "downvote_count", default: 0
-    t.integer  "status",         default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "upvote_count"
+    t.integer  "downvote_count"
+    t.integer  "vote_count"
+    t.integer  "official_status",   default: 0
+    t.integer  "unofficial_status"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "city_vote_comments", force: :cascade do |t|
