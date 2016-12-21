@@ -5,6 +5,6 @@ Location: <%= @user.location %><br/>
 <% if @user.ogranization.present? %>
 Oganization I work with or represent: <%= @user.oraginization %><br/>
 <% end %>
-<% if @user.services.present? %>
+Services for the community: <% if @user.services.present? %>
 <%= @user.services %><br/>
 <% end %>

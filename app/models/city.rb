@@ -15,11 +15,11 @@ class City < ApplicationRecord
   end
 
   def upvote_count
-    self.votes.count.where(type: 1)
+    self.votes.count.where(vote_type: 1)
   end
 
   def downvote_count
-    self.votes.count.where(type: 0)
+    self.votes.count.where(vote_type: 0)
   end
 
   def total_votes

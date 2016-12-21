@@ -21,7 +21,7 @@ class CitiesController < ApplicationController
   end
 
   def upvote
-    @vote = Vote.create(type: 1, user_id: current_user.id, city_id: @city.id)
+    @vote = Vote.create(vote_type: 1, user_id: current_user, city_id: @city.id)
     if @vote.save
       redirect_to city_path(@city), notice: "Upvoted City"
     else
@@ -30,7 +30,7 @@ class CitiesController < ApplicationController
   end
 
   def downvote
-    @vote = Vote.create(type: 0, user_id: current_user.id, city_id: @city.id)
+    @vote = Vote.create(vote_type: 0, user_id: current_user, city_id: @city.id)
     if @vote.save
       redirect_to city_path(@city), notice: "Downvoted City"
     else

@@ -1,1 +1,3 @@
-<h1><%= @city.name, @city.state %></h1>
+<h1><%= @city.name %>, <%= @city.state %></h1>
+<%= link_to "upvote", upvote_city_path(@city) %>
+<%= link_to "downvote", downvote_city_path(@city) %>
