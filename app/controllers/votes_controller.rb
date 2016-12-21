@@ -11,7 +11,7 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to city_path(@city), notice: "Upvoted City"
     else
-      redirect_to city_path(@city), error: "Can only cast one vote!"
+      redirect_to city_path(@city), error: "Can only cast one vote"
     end
   end
 
@@ -21,7 +21,7 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to city_path(@city), notice: "Downvoted City"
     else
-      redirect_to city_path(@city), error: "Can only cast one vote!"
+      redirect_to city_path(@city), error: "Can only cast one vote"
     end
   end
 
@@ -34,5 +34,8 @@ class VotesController < ApplicationController
     if current_user.id = @vote.user_id
       @vote.update(params[:type])
       redirect_to city_path(@vote.city_id), notice: "Vote changed"
+    else
+      redirect_to '/', error: "No trolls please."
+    end
   end
 end

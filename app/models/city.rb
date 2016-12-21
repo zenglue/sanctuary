@@ -14,6 +14,12 @@ class City < ApplicationRecord
     self.update(vote_count: self.upvote_count -= self.downvote_count)
   end
 
+  def upvote_count
+  end
+
+  def downvote_count
+  end
+
   def total_votes
     total = self.upvote_count += self.downvote_count
     total
