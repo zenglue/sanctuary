@@ -9,19 +9,19 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def new
+  def show_new
     @user = User.new
   end
 
-  def create
+  def show_create
     @user = User.create(user_params)
     redirect_to user_path(@user)
   end
 
-  def edit
+  def show_edit
   end
 
-  def update
+  def show_update
     if current_user.id == @user.id || current_user.admin?
       @user.update(user_params)
       redirect_to user_path(@user)

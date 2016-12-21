@@ -1,0 +1,8 @@
+<h1><%= @user.username %></h1>
+<% if @user.location.present? %>
+Location: <%= @user.location %><br/>
+<% end %>
+<% if @user.ogranization.present? %>
+Oganization I work with or represent: <%= @user.oraginization %><br/>
+<% end %>
+<%= @user.services %><br/>
