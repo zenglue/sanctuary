@@ -1,3 +1,4 @@
 <h1><%= @city.name %>, <%= @city.state %></h1>
+<h2><%= @city.official_status.humanize.downcase %></h2>
 <%= button_to "upvote", upvote_city_path(@city) %>
 <%= button_to "downvote", downvote_city_path(@city) %>
