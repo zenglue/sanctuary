@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cities do
     member do
       post 'upvote'
+      post 'downvote'
     end
     # resources :upvotes
 

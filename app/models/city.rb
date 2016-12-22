@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-  has_many :votes, dependent: :destroy
+  has_many :votes
   has_many :user_upvotes, through: :votes, source: :user
   has_many :user_downvotes, through: :votes, source: :user
   has_many :city_vote_commments
