@@ -21,11 +21,10 @@ class CitiesController < ApplicationController
   end
 
   def upvote
-    @vote = Vote.create(vote_type: 1, user_id: current_user, city_id: @city.id)
-    if @vote.save
+    if @city.votes.create(vote_type: 1, user_id: current_user, city_id: @city.id)
       redirect_to city_path(@city), notice: "Upvoted City"
     else
-      redirect_to city_path(@city), error: "Can only cast one vote"
+      redirect_to city_path(@city), notice: "Can only cast one vote"
     end
   end
 

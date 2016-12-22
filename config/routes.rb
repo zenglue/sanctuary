@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :comments
   resources :cities do
-    resources :upvotes
-    resources :downvotes
+    member do
+      post 'upvote'
+    end
+    # resources :upvotes
+
+    # resources :votes, only: [:create, :destroy]
+    # get 'votes', to: "votes#new"
   end
 
   resources :users

@@ -1,8 +1,9 @@
 class VotesController < ApplicationController
 
-
-  def create
-    @vote = Vote.create
+  def show
+    @city = City.find(params[:id])
+    @vote =Vote.find(params[:id])
+    redirect_to city_path(@city)
   end
 
   def edit
