@@ -1,0 +1,9 @@
+<%= link_to "All Cities", cities_path %><br/>
+<%= link_to "Back", :back %><br><br/>
+<% if !user_signed_in? %>
+<%= button_to "Sign in", new_user_session_path %><br/>
+<%= button_to "Sign up", new_user_registration_path %><br/>
+<% else %>
+welcome back <%= current_user.username %><br/>
+<%= button_to "Sign out", destroy_user_session_path %><br/>
+<% end %>

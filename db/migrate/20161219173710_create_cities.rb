@@ -3,7 +3,7 @@ class CreateCities < ActiveRecord::Migration[5.0]
     create_table :cities do |t|
       t.string :name
       t.string :state
-      t.integer :rank
+      t.integer :vote_count
       t.integer :official_status
       t.integer :unofficial_status
 

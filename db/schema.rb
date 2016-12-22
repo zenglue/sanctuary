@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20161220210541) do
   create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.string   "state"
-    t.integer  "rank"
+    t.integer  "vote_count"
     t.integer  "official_status"
     t.integer  "unofficial_status"
     t.datetime "created_at",        null: false

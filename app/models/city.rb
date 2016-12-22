@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-  has_many :votes
+  has_many :votes, dependent: :destroy
   has_many :user_upvotes, through: :votes, source: :user
   has_many :user_downvotes, through: :votes, source: :user
   has_many :city_vote_commments
@@ -15,11 +15,11 @@ class City < ApplicationRecord
   end
 
   def upvote_count
-    self.votes.count.where(vote_type: 1)
+    self.votes.where(vote_type: 1).count
   end
 
   def downvote_count
-    self.votes.count.where(vote_type: 0)
+    self.votes.where(vote_type: 0).count
   end
 
   def total_votes

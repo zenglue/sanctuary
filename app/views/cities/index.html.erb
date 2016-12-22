@@ -1,11 +1,11 @@
 <h2>Sanctuary Cities</h1>
 <% @sanctuary_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, number of votes: <%= city.user_upvotes.count %></p>
 <% end %>
 <hr>
 <h2>Possible Sanctuary Cities</h1>
 <% @possible_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, number of votes: <%= city.votes.count %></p>
 <% end %>
 <hr>
 <h2>Non-Sanctuary Cities</h1>
