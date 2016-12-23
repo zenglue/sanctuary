@@ -30,7 +30,7 @@ class CitiesController < ApplicationController
       @city.update_vote_count
       redirect_to city_path(@city), notice: "Upvoted City"
     else
-      redirect_to city_path(@city), alert: "Can only cast one vote per city"
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
     end
   end
 
@@ -40,7 +40,7 @@ class CitiesController < ApplicationController
       @city.update_vote_count
       redirect_to city_path(@city), notice: "Downvoted City"
     else
-      redirect_to city_path(@city), alert: "Can only cast one vote per city"
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
     end
   end
 

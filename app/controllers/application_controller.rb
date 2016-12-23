@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
   def home
   end
 
+  def current_user
+    super || guest_user
+  end
+
+  def guest_user
+    User.new(username: "guest")
+  end
 end

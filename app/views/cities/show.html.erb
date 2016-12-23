@@ -1,5 +1,6 @@
 <h1><%= @city.name %>, <%= @city.state %></h1>
-<h2><%= @city.official_status.humanize %>, Rank: <%= @city.rank %></h2>
+<h2><%= @city.official_status.humanize %></h2>
+<h2>Rank based on total votes: <%= @city.rank_by_total_votes %></h2>
 <strong>votes: <%= @city.vote_balance %></strong><br/>
 <strong>upvotes: <%= @city.upvote_count %></strong><br/>
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>

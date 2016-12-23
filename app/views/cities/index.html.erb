@@ -1,19 +1,24 @@
 <h2>Sanctuary Cities</h1>
 <% @sanctuary_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, number of votes: <%= city.votes.count %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
 <% end %>
 <hr>
 <h2>Possible Sanctuary Cities</h1>
 <% @possible_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, number of votes: <%= city.votes.count %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
 <% end %>
 <hr>
 <h2>Non-Sanctuary Cities</h1>
 <% @non_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
 <% end %>
 <hr>
 <h2>Cities with unknown status</h1>
 <% @unknown_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %></p>
+  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
+<% end %>
+<hr>
+
+<% if current_user.admin? %>
+<%= link_to "Add new city", new_city_path %>
 <% end %>

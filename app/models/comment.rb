@@ -5,6 +5,6 @@ class Comment < ApplicationRecord
   validates :content, length: { maximum: 400}
 
   def add_comment(vote)
-    vote.comment.build(id: vote.id)
+    vote.comment.build(vote_id: vote.id)
   end
 end
