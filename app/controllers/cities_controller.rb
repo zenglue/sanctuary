@@ -25,11 +25,7 @@ class CitiesController < ApplicationController
   end
 
   def upvote
-    if current_user
-      @vote = @city.votes.create(vote_type: 1, user_id: current_user.id, city_id: @city.id)
-    elsif current_user.nil?
-      @vote = @city.votes.create(vote_type: 1, user_id: 0, city_id: @city.id)
-    end
+    @vote = @city.votes.create(vote_type: 1, user_id: current_user.id, city_id: @city.id)
     if @vote.save
       redirect_to city_path(@city), notice: "Upvoted City"
     else

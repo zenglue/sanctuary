@@ -6,15 +6,10 @@ Rails.application.routes.draw do
       post 'upvote'
       post 'downvote'
     end
-    # resources :upvotes
-
-    # resources :votes, only: [:create, :destroy]
-    # get 'votes', to: "votes#new"
   end
 
   resources :users
 
-  root 'static_pages#home'
-
+  root 'application#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
