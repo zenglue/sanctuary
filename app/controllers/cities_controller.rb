@@ -11,8 +11,8 @@ class CitiesController < ApplicationController
   end
 
   def show
-    if !current_user.id.nil?
-      @vote = Vote.find(user_id: current_user.id)
+    if current_user.votes.includes(city_id: @city.id)
+      @vote = Vote.find_by(user_id: current_user.id)
     end
   end
 

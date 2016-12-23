@@ -1,7 +1,7 @@
 class City < ApplicationRecord
   has_many :votes, dependent: :destroy
-  has_many :city_vote_commments
-  has_many :comments, through: :city_vote_comments
+  # has_many :city_vote_comments
+  has_many :comments, through: :votes
 
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
