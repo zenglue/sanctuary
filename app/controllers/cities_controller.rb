@@ -35,7 +35,7 @@ class CitiesController < ApplicationController
   end
 
   def downvote
-    @vote = @city.votes.create(vote_type: 0, user_id: current_user, city_id: @city.id)
+    @vote = @city.votes.create(vote_type: 0, user_id: current_user.id, city_id: @city.id)
     if @vote.save
       @city.update_vote_count
       redirect_to city_path(@city), notice: "Downvoted City"

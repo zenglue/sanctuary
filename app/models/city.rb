@@ -22,13 +22,13 @@ class City < ApplicationRecord
     self.votes.where(vote_type: 0).count
   end
 
-  def total_votes
-    total = self.upvote_count += self.downvote_count
-    total
+  def vote_balance
+    value = self.upvote_count - self.downvote_count
+    value
   end
 
   def rank
-    City.order(:vote_count).pluck(:id).index(self.id)
+    City.order(vote_count: :desc).find_index(self) + 1
   end
 
   #Todo: define ally conditionals
