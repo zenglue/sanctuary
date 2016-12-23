@@ -10,8 +10,8 @@ class City < ApplicationRecord
   #Todo:
   # enum unofficial_status: [:non_ally, :contested_ally, :ally]
 
-  def vote_count
-    self.update(vote_count: self.upvote_count -= self.downvote_count)
+  def update_vote_count
+    self.increment!(:vote_count)
   end
 
   def upvote_count
@@ -27,9 +27,8 @@ class City < ApplicationRecord
     total
   end
 
-  def set_rank
-    ranking = City.order(:vote_count).pluck(:id).index(self.id)
-    self.update(rank: ranking)
+  def rank
+    City.order(:vote_count).pluck(:id).index(self.id)
   end
 
   #Todo: define ally conditionals
