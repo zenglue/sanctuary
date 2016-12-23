@@ -30,11 +30,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    redirect_to users_path, notice: "User account removed"
-  end
-
   private
 
   def set_user

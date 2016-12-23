@@ -12,7 +12,7 @@ class VotesController < ApplicationController
 
   def update
     @vote = Vote.find(params[:id])
-    if current_user = @vote.user_id
+    if current_user.id = @vote.user_id
       @vote.update(params[:type])
       redirect_to city_path(@vote.city_id), notice: "Vote changed"
     else

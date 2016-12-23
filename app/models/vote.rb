@@ -3,7 +3,6 @@ class Vote < ApplicationRecord
   belongs_to :user
   has_one :comment, inverse_of: :vote
   enum vote_type: [:downvote, :upvote]
-  validates :city_id, presence: true
-  validates :user_id, presence: true
+  validates_uniqueness_of :user_id, scope: :city_id
 
 end

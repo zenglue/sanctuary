@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :comments
   has_many :votes, dependent: :destroy
-  has_many :upvoted_cities, through: :votes, source: :city
-  has_many :downvoted_cities, through: :votes, source: :city
+  has_many :upvoted_cities, -> { where vote_type: 1 }, through: :votes, source: :city
+  has_many :downvoted_cities, -> { where vote_type: 0 }, through: :votes, source: :city
 
-  enum role: [:guest, :user, :admin]
+  enum role: [:user, :admin]
 
 end

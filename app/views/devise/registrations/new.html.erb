@@ -26,6 +26,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% if current_user.admin? %>
+  <div>
+    <%= f.label :role %><br/>
+    <%= f.select :role, User.roles.keys %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
