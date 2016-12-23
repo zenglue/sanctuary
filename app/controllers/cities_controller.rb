@@ -3,7 +3,7 @@ class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :upvote, :downvote, :edit, :destroy]
 
   def index
-    cities = City.order(:name)
+    cities = City.order(vote_count: :desc)
     @sanctuary_cities = cities.where(official_status: 3)
     @possible_cities = cities.where(official_status: 2)
     @non_cities = cities.where(official_status: 1)
@@ -11,6 +11,9 @@ class CitiesController < ApplicationController
   end
 
   def show
+    if !current_user.id.nil?
+      @vote = Vote.find(user_id: current_user.id)
+    end
   end
 
   def new

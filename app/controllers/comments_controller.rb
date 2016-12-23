@@ -5,6 +5,15 @@ class CommentsController < ApplicationController
   def show
   end
 
+  def new
+    @comment = Comment.new(vote_id: params[:vote_id])
+  end
+
+  def create
+    @comment = Comment.create(comment_params)
+    redirect_to comment_path(@comment)
+  end
+
   def edit
   end
 
@@ -13,14 +22,6 @@ class CommentsController < ApplicationController
       @comment.update(comment_params)
       redirect_to user_path(current_user)
     end
-  end
-
-  def new
-    @comment = Comment.new
-
-  def create
-    @comment = Comment.create(comment_params)
-    redirect_to comment_path(@comment)
   end
 
   def destroy
@@ -37,6 +38,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :vote_id)
   end
 end

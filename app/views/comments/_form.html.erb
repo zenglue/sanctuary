@@ -1,4 +1,5 @@
 <%= form_for @comment do |f| %>
 <%= f.label :content %>
 <%= f.text_field :content %>
+<%= f.hidden_field :vote_id %>
 <% end %>
