@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def is_admin?
     self.role == 1
   end
+
+  def is_guest?
+    self.role == 2
+  end
 end

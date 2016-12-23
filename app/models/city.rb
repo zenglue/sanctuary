@@ -1,6 +1,5 @@
 class City < ApplicationRecord
   has_many :votes, dependent: :destroy
-  # has_many :city_vote_comments
   has_many :comments, through: :votes
 
   #offical_status can only be changed by admins

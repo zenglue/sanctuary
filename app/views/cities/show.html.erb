@@ -6,9 +6,10 @@
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
 <%= button_to "upvote", upvote_city_path(@city) %>
 <%= button_to "downvote", downvote_city_path(@city) %><br/>
+<strong>User vote comments:</strong><br/>
 <% @city.comments.each do |comment| %>
-<%= comment.content %>
+<%= comment.user.username %> : <%= comment.content %><br><br/>
 <% end %>
 <% if current_user.votes.includes(@city.id) && @city.votes.includes(current_user.id)%>
-<%= link_to "Add a comment to your vote", new_comment_path(vote_id: @vote) %>
+<%= link_to "Add a comment to your vote", new_comment_path(vote_id: @vote, user_id: current_user) %>
 <% end %>
