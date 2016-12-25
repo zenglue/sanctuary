@@ -2,9 +2,9 @@
 <% if @user.location.present? %>
 Location: <%= @user.location %><br/>
 <% end %>
-<% if @user.ogranization.present? %>
+<% if @user.organization.present? %>
 Oganization I work with or represent: <%= @user.oraginization %><br/>
 <% end %>
-Services for the community: <% if @user.services.present? %>
-<%= @user.services %><br/>
+Additional info: <% if @user.additional_info.present? %>
+<%= @user.additional_info %><br/>
 <% end %>
