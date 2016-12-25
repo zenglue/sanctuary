@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create!(comment_params)
-    redirect_to comment_path(@comment)
+    redirect_to city_path(@comment.vote.city_id)
   end
 
   def edit

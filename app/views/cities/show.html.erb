@@ -6,12 +6,14 @@
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
 <%= button_to "upvote", upvote_city_path(@city) %>
 <%= button_to "downvote", downvote_city_path(@city) %><br/>
-<strong>User vote comments:</strong><br/>
-<% @city.comments.each do |comment| %>
-<%= comment.user.username %>, <%= comment.vote.vote_type %>d : <%= comment.content %><br><br/>
+<strong>User vote comments:</strong><br><br/>
+<% if @city.comments.exists? %>
+<% @city.votes.each do |vote|%>
+<%= vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
-<% if @city.votes.includes(current_user.id) && !@city.comments.includes(current_user.id)%>
+<% end %>
+<% if @city.votes.includes(current_user.id) %>
 <%= link_to "Add a comment to your vote", new_comment_path(vote_id: @vote, user_id: current_user) %>
-<% else %>
+<% elsif @city.comments.includes(current_user.id) %>
 <%= link_to "Edit your vote comment", edit_comment_path(@comment) %>
 <% end %>
