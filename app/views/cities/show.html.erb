@@ -8,8 +8,10 @@
 <%= button_to "downvote", downvote_city_path(@city) %><br/>
 <strong>User vote comments:</strong><br/>
 <% @city.comments.each do |comment| %>
-<%= comment.user.username %> : <%= comment.content %><br><br/>
+<%= comment.user.username %>, <%= comment.vote.vote_type %>d : <%= comment.content %><br><br/>
 <% end %>
-<% if current_user.votes.includes(@city.id) && @city.votes.includes(current_user.id)%>
+<% if @city.votes.includes(current_user.id) && !@city.comments.includes(current_user.id)%>
 <%= link_to "Add a comment to your vote", new_comment_path(vote_id: @vote, user_id: current_user) %>
+<% else %>
+<%= link_to "Edit your vote comment", edit_comment_path(@comment) %>
 <% end %>

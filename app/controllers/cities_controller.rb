@@ -14,6 +14,9 @@ class CitiesController < ApplicationController
     if current_user.votes.includes(city_id: @city.id)
       @vote = Vote.find_by(user_id: current_user.id)
     end
+    if @city.comments.includes(user_id: current_user.id)
+      @comment = Comment.find_by(vote_id: @vote.id)
+    end
   end
 
   def new
