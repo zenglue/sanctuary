@@ -11,11 +11,7 @@ class User < ApplicationRecord
 
   enum role: [:user, :admin, :guest]
 
-  def is_admin?
-    self.role == 1
-  end
-
-  def is_guest?
-    self.role == 2
+  def convert_user_to_admin
+    self.update(role: 1)
   end
 end

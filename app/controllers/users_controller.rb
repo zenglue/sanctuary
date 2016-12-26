@@ -31,6 +31,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def make_admin
+    @user = User.find(params[:id])
+    if current_user.admin?
+      @user.convert_user_to_admin
+      redirect_to user_path(@user)
+    end
+  end
+
   private
 
   def set_user
@@ -38,6 +46,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :location, :organization, :services)
+    params.require(:user).permit(:username, :email, :password, :role, profile_attributes: [:location, :organization, :additional_info])
   end
 end

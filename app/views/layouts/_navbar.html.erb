@@ -1,6 +1,12 @@
 <%= link_to "All Cities", cities_path %><br/>
 <%= link_to "Back", :back %><br><br/>
 welcome <%= current_user.username %><br/>
+<% if current_user.user? || current_user.admin? %>
+<%= link_to "Profile", user_path(current_user) %>
+<% end %>
+<% if current_user.admin? %>
+<%= link_to "All Users", users_path %>
+<% end %>
 <% if current_user.username == "guest" %>
 <%= button_to "Log in", new_user_session_path, method: :get %>
 <%= button_to "Sign up", new_user_registration_path, method: :get %><br/>

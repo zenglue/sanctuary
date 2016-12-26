@@ -31,6 +31,9 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <%= f.label :role %>
+  <%= f.select :role, User.roles.keys %>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

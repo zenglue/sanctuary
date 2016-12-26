@@ -5,6 +5,26 @@ Location: <%= @user.location %><br/>
 <% if @user.organization.present? %>
 Oganization I work with or represent: <%= @user.oraginization %><br/>
 <% end %>
-Additional info: <% if @user.additional_info.present? %>
-<%= @user.additional_info %><br/>
+<% if @user.additional_info.present? %>
+Additional info: <%= @user.additional_info %><br/>
+<% end %>
+
+<% if @user.upvoted_cities.present? %>
+<strong>Upvoted Cities:</strong><br/>
+<% @user.upvoted_cities.each do |city| %>
+<%= city.name %>, <%= city.state %><br/>
+<% end %>
+<% end %>
+
+<% if @user.downvoted_cities.present? %>
+<strong>Downvoted Cities:</strong><br/>
+<% @user.downvoted_cities.each do |city| %>
+<%= city.name %>, <%= city.state %><br/>
+<% end %>
+<% end %>
+
+
+<% if current_user.admin? && @user != current_user && @user.admin? %>
+<%= @user.role %><br/>
+<%= link_to "Make User Admin", make_admin_user_path(@user), method: :post%>
 <% end %>
