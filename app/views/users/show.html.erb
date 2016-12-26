@@ -1,30 +1,38 @@
 <h1><%= @user.username %></h1>
+
+
+
 <% if @user.location.present? %>
 Location: <%= @user.location %><br/>
 <% end %>
+
 <% if @user.organization.present? %>
 Oganization I work with or represent: <%= @user.oraginization %><br/>
 <% end %>
+<br>
 <% if @user.additional_info.present? %>
 Additional info: <%= @user.additional_info %><br/>
 <% end %>
-
+<br>
 <% if @user.upvoted_cities.present? %>
 <strong>Upvoted Cities:</strong><br/>
 <% @user.upvoted_cities.each do |city| %>
-<%= city.name %>, <%= city.state %><br/>
+<%= link_to city.name, city_path(city) %>, <%= city.state %><br/>
 <% end %>
 <% end %>
-
+<br>
 <% if @user.downvoted_cities.present? %>
 <strong>Downvoted Cities:</strong><br/>
 <% @user.downvoted_cities.each do |city| %>
-<%= city.name %>, <%= city.state %><br/>
+<%= link_to city.name, city_path(city) %>, <%= city.state %><br/>
 <% end %>
+<% end %>
+<br>
+<% if current_user == @user %>
+<%= link_to "Edit Login Info", edit_user_registration_path(@user) %>
 <% end %>
 
-
-<% if current_user.admin? && @user != current_user && @user.admin? %>
-<%= @user.role %><br/>
-<%= link_to "Make User Admin", make_admin_user_path(@user), method: :post%>
+<% if current_user.admin? && @user != current_user && !@user.admin? %>
+<%= link_to "Make User Admin", make_admin_user_path(@user) %><br/>
 <% end %>
+<br>
