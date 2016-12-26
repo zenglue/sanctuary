@@ -12,8 +12,10 @@
 <%= vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
 <% end %>
-<% if @city.votes.includes(current_user.id) %>
+<% @city.votes.each do |vote| %>
+<% if vote.user_id == current_user.id %>
 <%= link_to "Add a comment to your vote", new_comment_path(vote_id: @vote, user_id: current_user) %>
 <% elsif @city.comments.includes(current_user.id) %>
 <%= link_to "Edit your vote comment", edit_comment_path(@comment) %>
+<% end %>
 <% end %>
