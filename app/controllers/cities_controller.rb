@@ -3,11 +3,11 @@ class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :upvote, :downvote, :edit, :destroy]
 
   def index
-    cities = City.order(vote_count: :desc)
-    @sanctuary_cities = cities.where(official_status: 3)
-    @possible_cities = cities.where(official_status: 2)
-    @non_cities = cities.where(official_status: 1)
-    @unknown_cities = cities.where(official_status: 0)
+    cities = City.order_by_votes
+    @sanctuary_cities = cities.sanctuary
+    @possible_cities = cities.possible_sanctuary
+    @non_cities = cities.non_sanctuary
+    @unknown_cities = cities.unknown
   end
 
   def show

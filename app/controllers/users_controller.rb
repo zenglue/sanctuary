@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user.admin?
       @user.convert_user_to_admin
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "User is now an Admin"
     end
   end
 
