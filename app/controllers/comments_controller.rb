@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def new
     @vote = Vote.find(params[:vote_id])
-    @comment = Comment.new(vote_id: params[:vote_id], user_id: current_user.id)
+    @comment = Comment.new(vote_id: @vote.id, user_id: current_user.id)
   end
 
   def create
@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @vote = Vote.find(params[:vote_id])
   end
 
   def update
