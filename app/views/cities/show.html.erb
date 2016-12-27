@@ -7,11 +7,13 @@
 <%= button_to "upvote", upvote_city_vote_path(@city.id) %>
 <%= button_to "downvote", downvote_city_vote_path(@city.id) %><br/>
 <strong>User vote comments:</strong><br><br/>
+
 <% if @city.comments.exists? %>
 <% @city.votes.each do |vote|%>
 <%= vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
 <% end %>
+
 <% @city.votes.each do |vote| %>
 <% if vote.user_id == current_user.id && !vote.comment.present? %>
 <%= link_to "Add a comment to your vote", new_vote_comment_path(vote.id)%>

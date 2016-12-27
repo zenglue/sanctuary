@@ -24,6 +24,7 @@ class CitiesController < ApplicationController
         redirect_to city_path(@city)
       else
         redirect_to cities_path, error: "All fields must be present"
+      end
     end
   end
 

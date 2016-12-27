@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to city_path(@vote.city_id)
     else
-      redirect_to city_path(@vote.city_id), alert: "Comment must contain content and be less than 400 characters."
+      redirect_to city_path(@vote.city_id)
     end
   end
 
