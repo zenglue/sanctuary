@@ -11,8 +11,13 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @vote = Vote.find(params[:vote_id])
     @comment = Comment.create(comment_params)
-    redirect_to city_path(@comment.vote.city_id)
+    if @comment.save
+      redirect_to city_path(@vote.city_id)
+    else
+      redirect_to city_path(@vote.city_id), alert: "Comment must contain content and be less than 400 characters."
+    end
   end
 
   def edit

@@ -20,7 +20,10 @@ class CitiesController < ApplicationController
   def create
     if current_user.admin?
       @city = City.create(city_params)
-      redirect_to city_path(@city)
+      if @city.save
+        redirect_to city_path(@city)
+      else
+        redirect_to cities_path, error: "All fields must be present"
     end
   end
 

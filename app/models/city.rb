@@ -7,6 +7,8 @@ class City < ApplicationRecord
   scope :non_sanctuary, -> {where(official_status: 1)}
   scope :unknown, -> {where(official_status: 0)}
 
+  validates :name, :state, :official_status, presence: true
+
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
 

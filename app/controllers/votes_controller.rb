@@ -21,4 +21,6 @@ class VotesController < ApplicationController
       redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
     end
   end
+
+  private 
 end
