@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :comments
+
   resources :cities do
-    member do
-      post 'upvote'
-      post 'downvote'
+    resources :votes do
+      member do
+        post 'upvote'
+        post 'downvote'
+      end
     end
   end
 
-  resources :users do
+  resources :cities
+
+  resources :votes do
+    resources :comments
+  end
+
+
+  resources :users, only: [:index, :show] do
     member do
-      get 'make_admin'
-      post 'make_admin'
+      get 'make-admin'
+      post 'make-admin'
     end
   end
 

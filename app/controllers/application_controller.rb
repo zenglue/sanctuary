@@ -10,5 +10,6 @@ class ApplicationController < ActionController::Base
 
   def guest_user
     User.new(username: "guest")
+    # User.find_by(username: "Guest", id: 1)
   end
 end

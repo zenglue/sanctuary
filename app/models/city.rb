@@ -5,7 +5,7 @@ class City < ApplicationRecord
   scope :sanctuary, -> {where(official_status: 3)}
   scope :possible_sanctuary, -> {where(official_status: 2)}
   scope :non_sanctuary, -> {where(official_status: 1)}
-  scope :sunknown, -> {where(official_status: 0)}
+  scope :unknown, -> {where(official_status: 0)}
 
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
@@ -29,6 +29,10 @@ class City < ApplicationRecord
     where(official_status: 0)
   end
 
+  def self.order_by_votes
+    City.order(vote_count: :desc)
+  end
+
   def update_vote_count
     self.increment!(:vote_count)
   end
@@ -44,10 +48,6 @@ class City < ApplicationRecord
   def vote_balance
     value = self.upvote_count - self.downvote_count
     value
-  end
-
-  def self.order_by_votes
-    City.order(vote_count: :desc)
   end
 
   def rank_by_total_votes

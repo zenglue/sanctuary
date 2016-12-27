@@ -1,22 +1,24 @@
 class VotesController < ApplicationController
 
-  def show
-    @city = City.find(params[:id])
-    @vote =Vote.find(params[:id])
-    redirect_to city_path(@city)
-  end
-
-  def edit
-    @vote = Vote.find(params[:id])
-  end
-
-  def update
-    @vote = Vote.find(params[:id])
-    if current_user.id = @vote.user_id
-      @vote.update(params[:type])
-      redirect_to city_path(@vote.city_id), notice: "Vote changed"
+  def upvote
+    @city = City.find(params[:city])
+    @vote = Vote.create(vote_type: 1, user_id: current_user.id, city_id: @city.id)
+    if @vote.save
+      @city.update_vote_count
+      redirect_to city_path(@city), notice: "Upvoted City"
     else
-      redirect_to '/', error: "No trolls please."
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
+    end
+  end
+
+  def downvote
+    @city = City.find(params[:city])
+    @vote = Vote.create(vote_type: 0, user_id: current_user.id, city_id: @city.id)
+    if @vote.save
+      @city.update_vote_count
+      redirect_to city_path(@city), notice: "Downvoted City"
+    else
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
     end
   end
 end

@@ -1,15 +1,21 @@
-<%= form_for @user do |f| %>
-<div class="field">
-  <%= f.label :location %>
-  <%= f.text_field :location %>
+<%= fields_for :profile do |ff| %>
+<div>
+  <%= ff.label :location %>
+  <%= ff.text_field :location %>
 </div>
 
-<div class="field">
-  <%= f.label :organization %>
-  <%= f.text_field :organization%>
+<div>
+  <%= ff.label :organization %>
+  <%= ff.text_field :organization%>
 </div>
 
-<div class="field">
-  <%= f.label :additional_info %>
-  <%= f.text_field :additional_info %>
+<div>
+  <%= ff.label :additional_info %>
+  <%= ff.text_field :additional_info %>
 </div>
+
+<div>
+  <%= ff.submit %>
+</div>
+
+<% end %>
