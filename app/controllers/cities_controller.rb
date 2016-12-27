@@ -11,6 +11,11 @@ class CitiesController < ApplicationController
   end
 
   def show
+    @city.votes.each do |vote|
+      if vote.user_id == current_user.id
+        @vote = vote
+      end
+    end
   end
 
   def new

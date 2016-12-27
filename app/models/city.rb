@@ -56,6 +56,7 @@ class City < ApplicationRecord
     City.order(vote_count: :desc).find_index(self) + 1
   end
 
+
   #Todo: define ally conditionals
   # def set_alliance
   #   if (self.vote_count >= 1 && self.offical_status == 3) || (self.vote_count >= 1 && self.offical_status == 2)

@@ -4,8 +4,8 @@
 <strong>votes: <%= @city.vote_balance %></strong><br/>
 <strong>upvotes: <%= @city.upvote_count %></strong><br/>
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
-<%= button_to "upvote", upvote_city_vote_path(@city.id) %>
-<%= button_to "downvote", downvote_city_vote_path(@city.id) %><br/>
+<%= button_to "upvote", upvote_city_vote_path(@city) %>
+<%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
 <strong>User vote comments:</strong><br><br/>
 
 <% if @city.comments.exists? %>
@@ -14,10 +14,8 @@
 <% end %>
 <% end %>
 
-<% @city.votes.each do |vote| %>
-<% if vote.user_id == current_user.id && !vote.comment.present? %>
-<%= link_to "Add a comment to your vote", new_vote_comment_path(vote.id)%>
-<% elsif vote.comment.present? %>
-<%= link_to "Edit your vote comment", edit_vote_comment_path(vote.id, vote.comment.id) %>
-<% end %>
+<% if !@vote.nil? && !@vote.comment.present? %>
+<%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
+<% elsif @vote.comment.present? %>
+<%= link_to "Edit your vote comment", edit_vote_comment_path(@vote, @vote.comment) %>
 <% end %>

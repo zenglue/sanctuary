@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only: [:index, :show] do
+  resources :users do
     member do
       get 'make-admin'
       post 'make-admin'

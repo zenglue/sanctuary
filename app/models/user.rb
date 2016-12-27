@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :votes
   has_many :cities, through: :votes, source: :city
   has_one :profile
-  accepts_nested_attributes_for :profile
   has_many :upvoted_cities, -> { where "votes.vote_type = 1" }, through: :votes, source: :city
   has_many :downvoted_cities, -> { where "votes.vote_type = 0" }, through: :votes, source: :city
 
@@ -17,5 +16,8 @@ class User < ApplicationRecord
     self.update(role: 1)
   end
 
-  def profile_attributes =
+  def profile_attributes=(profile_attributes)
+    self.profile.build(profile_attributes)
+  end
+
 end

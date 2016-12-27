@@ -29,7 +29,7 @@ Additional info: <%= @user.additional_info %><br/>
 <% end %>
 <br>
 <% if current_user == @user %>
-<%= link_to "Add Profile Info", new_about_user_path(@user) %>
+<%= link_to "Add Profile Info", new_user_path(@user) %>
 <%= link_to "Edit Login Info", edit_user_registration_path(@user) %>
 <% end %>
 
