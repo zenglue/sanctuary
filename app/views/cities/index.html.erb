@@ -1,22 +1,14 @@
 <h2>Sanctuary Cities</h1>
-<% @sanctuary_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
-<% end %>
+<%= render partial: 'cities/city_details', collection: @sanctuary_cities, as: :city %>
 <hr>
 <h2>Possible Sanctuary Cities</h1>
-<% @possible_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
-<% end %>
+<%= render partial: 'cities/city_details', collection: @possible_cities, as: :city %>
 <hr>
 <h2>Non-Sanctuary Cities</h1>
-<% @non_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
-<% end %>
+<%= render partial: 'cities/city_details', collection: @non_cities, as: :city %>
 <hr>
 <h2>Cities with unknown status</h1>
-<% @unknown_cities.each do |city| %>
-  <p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
-<% end %>
+<%= render partial: 'cities/city_details', collection: @unknown_cities, as: :city %>
 <hr>
 
 <% if current_user.admin? %>
