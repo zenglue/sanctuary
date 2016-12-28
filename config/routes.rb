@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-
   resources :users, only: [:index, :show] do
     member do
       get 'make-admin'

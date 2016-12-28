@@ -8,7 +8,6 @@ class VotesController < ApplicationController
     @vote = Vote.find(params[:id])
   end
 
-
   def upvote
     @city = City.find(params[:id])
     @vote = @city.votes.create(vote_type: 1, user_id: current_user.id)
@@ -33,5 +32,5 @@ class VotesController < ApplicationController
 
   private
 
-  params.require(:vote).permit(:vote_type, comment_attributes: [:title, :content])
+
 end

@@ -1,3 +1,13 @@
 <h1>Change your vote or add/edit comment to your vote</h1>
 <%= form_for [ @city, @vote ] do |f| %>
   <%= f.label :vote_type %>
+  <%= f.label :vote_type %>
+  <%= f.select :vote_type, Vote.vote_types.keys %>
+  <%= f.fields_for :comment do |f| %>
+  <%= ff.label :content %><br>
+  <%= ff.text_area :content, rows: 10, cols: 60 %><br>
+  <%= ff.hidden_field :vote_id %>
+  <%= ff.hidden_field :user_id %>
+  <%= ff.submit %>
+  <% end %>
+  <% end %>

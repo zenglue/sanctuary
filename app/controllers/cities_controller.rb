@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
 
-  before_action :set_city, only: [:show, :upvote, :downvote, :edit, :destroy]
+  before_action :set_city, only: [:show, :edit, :destroy]
 
   def index
     cities = City.order_by_votes
@@ -42,6 +42,28 @@ class CitiesController < ApplicationController
       @city = City.find(params[:id])
       @city.update(city_params)
       redirect_to city_path(@city)
+    end
+  end
+
+  def upvote
+    @city = City.find(params[:city_id])
+    @vote = @city.votes.create(vote_type: 1, user_id: current_user.id)
+    if @vote.save
+      @city.update_vote_count
+      redirect_to city_path(@city), notice: "Upvoted City"
+    else
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
+    end
+  end
+
+  def downvote
+    @city = City.find(params[:city_id])
+    @vote = @city.votes.create(vote_type: 0, user_id: current_user.id)
+    if @vote.save
+      @city.update_vote_count
+      redirect_to city_path(@city), notice: "Downvoted City"
+    else
+      redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
     end
   end
 
