@@ -15,9 +15,4 @@ class User < ApplicationRecord
   def convert_user_to_admin
     self.update(role: 1)
   end
-
-  def profile_attributes=(profile_attributes)
-    self.profile.build(profile_attributes)
-  end
-
 end

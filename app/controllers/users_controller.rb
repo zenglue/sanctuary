@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :new_about, :edit_about, :update_about, :destroy]
+  before_action :set_user, only: [:show]
 
   def index
     @users = User.all
@@ -7,27 +7,7 @@ class UsersController < ApplicationController
 
 
   def show
-  end
-
-  def new_about
-    @user.profile = Profile.new
-  end
-
-  def create_about
-    @user.profile = Profile.create(params[:profile_attributes][user_id: @user.id])
-    redirect_to user_path(@user)
-  end
-
-  def edit_about
-  end
-
-  def update_about
-    if current_user.id == @user.id || current_user.admin?
-      @user.update(user_params)
-      redirect_to user_path(@user)
-    else
-      redirect_to '/', error: "Access denied"
-    end
+    @profile = @user.profile
   end
 
   def make_admin
@@ -38,9 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.delete
-  end
 
   private
 
@@ -49,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :role, profile_attributes: [:user_id, :location, :organization, :additional_info])
+    params.require(:user).permit(:username, :email, :password, :role)
   end
 end

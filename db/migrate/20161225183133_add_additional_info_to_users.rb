@@ -1,5 +1,0 @@
-class AddAdditionalInfoToUsers < ActiveRecord::Migration[5.0]
-  def change
-    add_column :users, :additional_info, :text
-  end
-end

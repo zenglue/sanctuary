@@ -12,9 +12,6 @@ class City < ApplicationRecord
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
 
-  #Todo: dynamic status based on vote count and type
-  #[:non_ally, :contested_ally, :ally]
-
   def self.sanctuary
     where(official_status: 3)
   end
@@ -55,13 +52,4 @@ class City < ApplicationRecord
   def rank_by_total_votes
     City.order(vote_count: :desc).find_index(self) + 1
   end
-
-
-  #Todo: define ally conditionals
-  # def set_alliance
-  #   if (self.vote_count >= 1 && self.offical_status == 3) || (self.vote_count >= 1 && self.offical_status == 2)
-  #     "ally"
-  #   elsif self.vote_count >= 0 && self.offical_status == 3 ||
-  #   end
-  # end
 end

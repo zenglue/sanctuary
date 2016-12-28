@@ -10,14 +10,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :cities
-
   resources :votes do
     resources :comments
   end
 
 
-  resources :users do
+  resources :users, only: [:index, :show] do
     member do
       get 'make-admin'
       post 'make-admin'

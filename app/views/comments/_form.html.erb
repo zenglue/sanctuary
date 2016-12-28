@@ -1,4 +1,4 @@
-<%= form_for [@vote, @comment] do |f| %>
+<%= form_for [vote, comment] do |f| %>
 <%= f.label :content %><br>
 <%= f.text_area :content, rows: 10, cols: 60 %><br>
 <%= f.hidden_field :vote_id %>

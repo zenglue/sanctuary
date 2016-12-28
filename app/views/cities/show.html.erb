@@ -8,14 +8,16 @@
 <%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
 <strong>User vote comments:</strong><br><br/>
 
-<% if @city.comments.exists? %>
+<% if @city.comments.any? %>
 <% @city.votes.each do |vote|%>
 <%= vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
 <% end %>
 
-<% if !@vote.nil? && !@vote.comment.present? %>
-<%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
-<% elsif @vote.comment.present? %>
-<%= link_to "Edit your vote comment", edit_vote_comment_path(@vote, @vote.comment) %>
+<% @city.votes.each do |vote| %>
+<% if vote.user_id == current_user.id && !vote.comment.present? %>
+<%= link_to "Add a comment to your vote", new_vote_comment_path(vote.id)%>
+<% elsif vote.comment.present? %>
+<%= link_to "Edit your vote or comment", edit_vote_comment_path(vote.id, vote.comment.id) %>
+<% end %>
 <% end %>

@@ -2,16 +2,10 @@
 
 
 
-<% if @user.location.present? %>
-Location: <%= @user.location %><br/>
-<% end %>
-
-<% if @user.organization.present? %>
-Oganization I work with or represent: <%= @user.oraginization %><br/>
-<% end %>
-<br>
-<% if @user.additional_info.present? %>
-Additional info: <%= @user.additional_info %><br/>
+<% if !@profile.nil? %>
+Location: <%= @profile.location %><br/>
+Oganization I work with or represent: <%= @profile.oraginization %><br/>
+Additional info: <%= @profile.additional_info %><br/>
 <% end %>
 <br>
 <% if @user.upvoted_cities.present? %>
@@ -28,9 +22,29 @@ Additional info: <%= @user.additional_info %><br/>
 <% end %>
 <% end %>
 <br>
-<% if current_user == @user %>
-<%= link_to "Add Profile Info", new_user_path(@user) %>
+<% if current_user == @user && @user.profile.nil? %>
+<%= form_for :profile do |ff| %>
+<div>
+  <%= ff.label :location %>
+  <%= ff.text_field :location %>
+</div>
+
+<div>
+  <%= ff.label :organization %>
+  <%= ff.text_field :organization%>
+</div>
+
+<div>
+  <%= ff.label :additional_info %>
+  <%= ff.text_field :additional_info %>
+</div>
+
+<div>
+  <%= ff.submit %>
+</div>
+
 <%= link_to "Edit Login Info", edit_user_registration_path(@user) %>
+<% end %>
 <% end %>
 
 <% if current_user.admin? && @user != current_user && !@user.admin? %>

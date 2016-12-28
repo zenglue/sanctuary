@@ -4,6 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :location
       t.string :organization
       t.text :additional_info
+      t.integer :user_id
 
       t.timestamps
     end
