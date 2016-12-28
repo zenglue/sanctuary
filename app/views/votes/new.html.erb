@@ -1,7 +1,0 @@
-<%= form_for(@vote) do |f| %>
-  <%= f.label :vote_type %>
-  <%= f.select :vote_type, Vote.vote_types.keys %>
-  <%= f.hidden_field :city_id, value: params['city_id'] %>
-
-  <%= f.submit %>
-  <% end %>

@@ -6,6 +6,8 @@ class VotesController < ApplicationController
 
   def update
     @vote = Vote.find(params[:id])
+    @vote.update(vote_params)
+    redirect_to city_path(@vote.city_id)
   end
 
   def upvote
@@ -32,5 +34,8 @@ class VotesController < ApplicationController
 
   private
 
+  def vote_params
+    params.require(:vote).permit(:vote_type, :user_id, :city_id, comment_attributes: [:id, :content, :user_id, :vote_id])
+  end
 
 end

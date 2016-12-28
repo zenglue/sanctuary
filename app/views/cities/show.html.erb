@@ -17,5 +17,5 @@
 <% if @vote && !@vote.comment.present?%>
 <%= link_to "Add a comment to your vote", new_vote_comment_path(@vote.id)%>
 <% elsif @vote && @vote.comment.present? %>
-<%= link_to "Edit your vote or comment", edit_vote_comment_path(@vote.id, @vote.comment.id) %>
+<%= link_to "Edit your vote or comment", edit_vote_path(@vote) %>
 <% end %>
