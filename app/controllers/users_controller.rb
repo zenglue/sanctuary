@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
 
   def show
-    @profile = @user.profile
   end
 
   def make_admin

@@ -14,7 +14,8 @@ welcome <%= current_user.username %><br/>
 <%= link_to "Back", :back %><br/>
 
 <% if current_user.username == "guest" %>
-<%= button_to "Log in", new_user_session_path, method: :get %>
+<%= button_to "Login", new_user_session_path, method: :get %>
+<%= button_to "Login with Google", user_google_oauth2_omniauth_authorize_path %>
 <%= button_to "Sign up", new_user_registration_path, method: :get %><br/>
 <% else %>
 <%= button_to "Sign out", destroy_user_session_path, method: :delete %><br/>
