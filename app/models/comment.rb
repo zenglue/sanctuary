@@ -4,6 +4,6 @@ class Comment < ApplicationRecord
 
   delegate :city, to: :vote
 
-  validates :content, presence: true, length: { maximum: 400}
+  validates :content, presence: true, length: { minimum: 25, maximum: 500}
 
 end

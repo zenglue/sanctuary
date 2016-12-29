@@ -1,4 +1,0 @@
-<%= @comment.content %>
-<% if current_user.admin? || current_user.id == @comment.user_id %>
-<%= link_to 'Edit', edit_comment_path(@comment) %>
-<% end %>

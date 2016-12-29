@@ -1,11 +1,10 @@
-welcome <%= current_user.username %><br/>
+Welcome <%= current_user.username %><br/>
 <br>
 <%= link_to "All Cities", cities_path %><br/>
 
 <% if !current_user.id.nil? %>
 <%= link_to "Profile", user_path(current_user) %><br/>
 <% end %>
-
 
 <% if current_user.admin? %>
 <%= link_to "All Users", users_path %><br/>

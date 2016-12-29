@@ -12,22 +12,6 @@ class City < ApplicationRecord
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
 
-  def self.sanctuary
-    where(official_status: 3)
-  end
-
-  def self.possible_sanctuary
-    where(official_status: 2)
-  end
-
-  def self.non_sanctuary
-    where(official_status: 1)
-  end
-
-  def self.unknown
-    where(official_status: 0)
-  end
-
   def self.order_by_votes
     City.order(vote_count: :desc)
   end
