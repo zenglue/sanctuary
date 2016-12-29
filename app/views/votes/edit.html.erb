@@ -1,4 +1,4 @@
-<h1>Change your vote or add/edit comment to your vote</h1>
+<h1>Change your <%= @vote.vote_type %> or edit comment for <%= @vote.city.name %> </h1>
 <%= form_for [ @city, @vote ] do |f| %>
   <%= f.label :vote_type %>
   <%= f.select :vote_type, Vote.vote_types.keys %><br><br/>
