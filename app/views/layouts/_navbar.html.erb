@@ -1,13 +1,12 @@
 Welcome <%= current_user.username %><br/>
 <br>
 <%= link_to "All Cities", cities_path %><br/>
+<% if current_user.admin? %>
+<%= link_to "All Users", users_path %><br/>
+<% end %>
 
 <% if !current_user.id.nil? %>
 <%= link_to "Profile", user_path(current_user) %><br/>
-<% end %>
-
-<% if current_user.admin? %>
-<%= link_to "All Users", users_path %><br/>
 <% end %>
 
 <%= link_to "Back", :back %><br/>
@@ -19,5 +18,3 @@ Welcome <%= current_user.username %><br/>
 <% else %>
 <%= button_to "Sign out", destroy_user_session_path, method: :delete %><br/>
 <% end %>
-
- <!-- https://codingdragon530.wordpress.com/2016/11/04/authenticating-with-omniauth/ -->

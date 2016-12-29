@@ -1,1 +1,8 @@
-<p><%= link_to city.name, city_path(city) %>, <%= city.state %>, total number of upvotes and downvotes: <%= city.votes.count %></p>
+<p><%= link_to city.name, city_path(city) %>,
+  <%= city.state %>,
+  total number of upvotes and downvotes: <%= city.votes.count %>
+  <% if current_user.admin? %>
+  <%= button_to 'Edit', edit_city_path(city) %> |
+  <%= button_to 'Delete', city, method: :delete %>
+  <% end %>
+</p>

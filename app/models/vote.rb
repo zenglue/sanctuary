@@ -1,7 +1,7 @@
 class Vote < ApplicationRecord
   belongs_to :city
   belongs_to :user
-  has_many :comments
+  has_one :comment
 
   enum vote_type: [:downvote, :upvote]
 

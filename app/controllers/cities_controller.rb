@@ -14,6 +14,9 @@ class CitiesController < ApplicationController
     @city.votes.each do |vote|
       if vote.user_id == current_user.id
         @vote = vote
+        if vote.comment.present?
+          @comment = vote.comment
+        end
       end
     end
   end
@@ -24,11 +27,12 @@ class CitiesController < ApplicationController
 
   def create
     if current_user.admin?
-      @city = City.create(city_params)
-      if @city.save
+      @city = City.new(city_params)
+      if @city.valid?
+        @city.save
         redirect_to city_path(@city)
       else
-        redirect_to cities_path, error: "All fields must be present"
+        redirect_to cities_path
       end
     end
   end
@@ -41,7 +45,11 @@ class CitiesController < ApplicationController
     if current_user.admin?
       @city = City.find(params[:id])
       @city.update(city_params)
-      redirect_to city_path(@city)
+      if @city.save
+        redirect_to city_path(@city)
+      else
+        render :edit
+      end
     end
   end
 

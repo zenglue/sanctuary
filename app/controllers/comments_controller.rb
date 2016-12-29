@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
   def destroy
     if current_user.id == @comment.user_id || current_user.admin?
       @comment.destroy
-      redirect_to user_path(current_user)
+      redirect_to city_path(@comment.vote.city_id)
     end
   end
 

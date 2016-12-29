@@ -10,7 +10,7 @@
 
 <% if @city.comments.any? %>
 <% @city.votes.each do |vote|%>
-<%= linK_to vote.user.username, user_path(vote.user) %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
+<%= link_to vote.user.username, user_path(vote.user) %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
 <% end %>
 
@@ -18,4 +18,5 @@
 <%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
 <% elsif @vote && @vote.comment.present? %>
 <%= link_to "Edit your vote or comment", edit_vote_path(@vote) %>
+<%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %>
 <% end %>
