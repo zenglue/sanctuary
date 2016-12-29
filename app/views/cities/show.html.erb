@@ -10,7 +10,7 @@
 
 <% if @city.comments.any? %>
 <% @city.votes.each do |vote|%>
-<%= vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
+<%= link_to vote.user.username %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
 <% end %>
 <% end %>
 

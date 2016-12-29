@@ -12,8 +12,9 @@ class VotesController < ApplicationController
 
   def upvote
     @city = City.find(params[:id])
-    @vote = @city.votes.create(vote_type: 1, user_id: current_user.id)
-    if @vote.save
+    @vote = @city.votes.new(vote_type: 1, user_id: current_user.id)
+    if @vote.valid?
+      @vote.save
       @city.update_vote_count
       redirect_to city_path(@city), notice: "Upvoted City"
     else
@@ -23,8 +24,9 @@ class VotesController < ApplicationController
 
   def downvote
     @city = City.find(params[:id])
-    @vote = @city.votes.create(vote_type: 0, user_id: current_user.id)
-    if @vote.save
+    @vote = @city.votes.new(vote_type: 0, user_id: current_user.id)
+    if @vote.valid?
+      @vote.save
       @city.update_vote_count
       redirect_to city_path(@city), notice: "Downvoted City"
     else

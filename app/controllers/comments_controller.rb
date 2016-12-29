@@ -12,12 +12,13 @@ class CommentsController < ApplicationController
 
   def create
     @vote = Vote.find(params[:vote_id])
-    @comment = @vote.create_comment(comment_params)
+    @comment = @vote.build_comment(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
+    if @comment.valid?
+      @comment.save
       redirect_to city_path(@vote.city_id)
     else
-      redirect_to city_path(@vote.city_id)
+      render :new
     end
   end
 
@@ -28,7 +29,11 @@ class CommentsController < ApplicationController
   def update
     if current_user.id == @comment.user_id || current_user.admin?
       @comment.update(comment_params)
-      redirect_to city_path(@comment.vote.city_id)
+      if @comment.save
+        redirect_to city_path(@comment.vote.city_id)
+      else
+        render :edit
+      end
     end
   end
 
@@ -46,6 +51,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :vote_id, :user_id)
+    params.require(:comment).permit(:content)
   end
 end
