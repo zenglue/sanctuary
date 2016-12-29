@@ -7,12 +7,13 @@ class CommentsController < ApplicationController
 
   def new
     @vote = Vote.find(params[:vote_id])
-    @comment = @vote.build_comment(user_id: current_user.id)
+    @comment = @vote.build_comment
   end
 
   def create
     @vote = Vote.find(params[:vote_id])
     @comment = @vote.create_comment(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
       redirect_to city_path(@vote.city_id)
     else
