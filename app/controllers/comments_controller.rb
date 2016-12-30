@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment, only: [:show, :edit, :destroy, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def show
   end
