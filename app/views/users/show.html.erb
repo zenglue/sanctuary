@@ -25,6 +25,5 @@
 <% end %>
 
 <% if current_user.admin? && @user != current_user && !@user.admin? %>
-<%= link_to "Make User Admin", make_admin_user_path(@user) %><br/>
+<br><%= link_to "Make User Admin", make_admin_user_path(@user) %><br/>
 <% end %>
-<br>

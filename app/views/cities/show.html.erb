@@ -6,7 +6,7 @@
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
 <%= button_to "upvote", upvote_city_vote_path(@city) %>
 <%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
-<strong>User vote comments:</strong><br><br/>
+<br><strong>User vote comments:</strong><br/>
 
 <% if @city.comments.any? %>
 <% @city.votes.each do |vote|%>
