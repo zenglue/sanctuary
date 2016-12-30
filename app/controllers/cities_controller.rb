@@ -32,7 +32,7 @@ class CitiesController < ApplicationController
         @city.save
         redirect_to city_path(@city)
       else
-        redirect_to cities_path
+        render :new
       end
     end
   end

@@ -1,6 +1,6 @@
 <h1><%= @city.name %>, <%= @city.state %></h1>
 <h2><%= @city.official_status.humanize %></h2>
-<h2>Rank based on total votes: <%= @city.rank_by_total_votes %></h2>
+<h2>Rank based on vote balance and total votes: <%= @city.rank_by_total_votes %></h2>
 <strong>votes: <%= @city.vote_balance %></strong><br/>
 <strong>upvotes: <%= @city.upvote_count %></strong><br/>
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
@@ -17,6 +17,6 @@
 <% if @vote && !@vote.comment.present?%>
 <%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
 <% elsif @vote && @vote.comment.present? %>
-<%= link_to "Edit your vote or comment", edit_vote_path(@vote) %>
+<%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>
 <%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %>
 <% end %>

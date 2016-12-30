@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.valid?
       @comment.save
-      redirect_to city_path(@vote.city_id)
+      redirect_to city_path(@comment.city)
     else
       render :new
     end
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     if current_user.id == @comment.user_id || current_user.admin?
       @comment.update(comment_params)
       if @comment.save
-        redirect_to city_path(@comment.vote.city_id)
+        redirect_to city_path(@comment.city)
       else
         render :edit
       end
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
   def destroy
     if current_user.id == @comment.user_id || current_user.admin?
       @comment.destroy
-      redirect_to city_path(@comment.vote.city_id)
+      redirect_to city_path(@comment.city), notice: "Comment deleted"
     end
   end
 
