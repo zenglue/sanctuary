@@ -28,8 +28,7 @@ class CommentsController < ApplicationController
 
   def update
     if current_user.id == @comment.user_id || current_user.admin?
-      @comment.update(comment_params)
-      if @comment.save
+      if @comment.update(comment_params)
         redirect_to city_path(@comment.city)
       else
         render :edit

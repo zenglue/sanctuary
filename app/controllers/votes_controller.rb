@@ -6,8 +6,7 @@ class VotesController < ApplicationController
 
   def update
     @vote = Vote.find(params[:id])
-    @vote.update(vote_params)
-    if @vote.save
+    if @vote.update(vote_params)
       redirect_to city_path(@vote.city_id), notice: "updated vote or comment"
     else
       render :edit
@@ -41,6 +40,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.require(:vote).permit(:vote_type, comment_attributes: [:id, :content])
+    params.require(:vote).permit(:vote_type, comment_attributes: [:content])
   end
 end

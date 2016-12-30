@@ -44,8 +44,7 @@ class CitiesController < ApplicationController
   def update
     if current_user.admin?
       @city = City.find(params[:id])
-      @city.update(city_params)
-      if @city.save
+      if @city.update(city_params)
         redirect_to city_path(@city)
       else
         render :edit
