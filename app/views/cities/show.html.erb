@@ -4,19 +4,20 @@
 <strong>votes: <%= @city.vote_balance %></strong><br/>
 <strong>upvotes: <%= @city.upvote_count %></strong><br/>
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
+
 <%= button_to "upvote", upvote_city_vote_path(@city) %>
 <%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
-<br><strong>User vote comments:</strong><br/>
 
+<br><strong>User vote comments:</strong><br/>
 <% if @city.comments.any? %>
 <% @city.votes.each do |vote|%>
-<%= link_to vote.user.username, user_path(vote.user) %>, <%= vote.vote_type %>d : <%= vote.comment.content %><br><br/>
+<%= link_to vote.user.username, user_path(vote.user) %>, <%= vote.vote_type %>d : <%= @comment.content %><br><br/>
 <% end %>
 <% end %>
 
 <% if @vote && !@vote.comment.present?%>
 <%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
 <% elsif @vote && @vote.comment.present? %>
-<%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br><br/>
+<br><%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>
 <%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %>
 <% end %>

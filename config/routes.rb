@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # post '/cities/:city_id/votes/upvote', to: 'votes#upvote', as: 'upvote_city_vote'
+  # post '/cities/:city_id/votes/upvote', to: 'votes#downvote', as: 'downvote_city_vote'
+
   resources :votes do
     resources :comments
   end
