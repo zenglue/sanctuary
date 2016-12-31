@@ -18,3 +18,4 @@ Welcome <%= current_user.username %><br/>
 <% else %>
 <%= button_to "Sign out", destroy_user_session_path, method: :delete %><br/>
 <% end %>
+<hr>
