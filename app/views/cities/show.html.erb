@@ -8,16 +8,16 @@
 <%= button_to "upvote", upvote_city_vote_path(@city) %>
 <%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
 
+<% if @vote && !@vote.comment.present?%>
+<%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%><br><br/>
+<% elsif @vote && @comment.present? %>
+<br><%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>
+<br><%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %><br/>
+<% end %>
+
 <br><strong>User vote comments:</strong><br/>
 <% if @city.comments.present? %>
 <% @city.comments.each do |comment|%>
 <%= link_to comment.user.username, user_path(comment.user) %>, <%= comment.vote.vote_type %>d : <%= comment.content %><br><br/>
 <% end %>
-<% end %>
-
-<% if @vote && !@vote.comment.present?%>
-<%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%>
-<% elsif @vote && @comment.present? %>
-<br><%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>
-<%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %>
 <% end %>

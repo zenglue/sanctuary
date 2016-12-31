@@ -30,15 +30,6 @@ ActiveRecord::Schema.define(version: 20161229004025) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.string   "location"
-    t.string   "organization"
-    t.text     "additional_info"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.integer  "role",                   default: 0
