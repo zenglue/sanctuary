@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
 
   delegate :city, to: :vote
 
+  default_scope {order(created_at: :desc)}
+
   validates :content, presence: true, length: { minimum: 25, maximum: 500}
 
 end
