@@ -1,16 +1,15 @@
 <h2>Sanctuary Cities</h1>
-<%= render partial: 'cities/city_details', collection: @sanctuary_cities, as: :city %>
+<% if current_user.admin? %>
+  <%= button_to "Add new city", new_city_path %>
+<% end %>
+  <%= render partial: 'cities/city_details', collection: @sanctuary_cities, as: :city %>
 <hr>
 <h2>Possible Sanctuary Cities</h1>
-<%= render partial: 'cities/city_details', collection: @possible_cities, as: :city %>
+  <%= render partial: 'cities/city_details', collection: @possible_cities, as: :city %>
 <hr>
 <h2>Non-Sanctuary Cities</h1>
-<%= render partial: 'cities/city_details', collection: @non_cities, as: :city %>
+  <%= render partial: 'cities/city_details', collection: @non_cities, as: :city %>
 <hr>
 <h2>Cities with unknown status</h1>
-<%= render partial: 'cities/city_details', collection: @unknown_cities, as: :city %>
+  <%= render partial: 'cities/city_details', collection: @unknown_cities, as: :city %>
 <hr>
-
-<% if current_user.admin? %>
-<%= button_to "Add new city", new_city_path %>
-<% end %>

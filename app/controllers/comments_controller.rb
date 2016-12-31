@@ -22,20 +22,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-    @vote = Vote.find(params[:vote_id])
-  end
-
-  def update
-    if current_user.id == @comment.user_id || current_user.admin?
-      if @comment.update(comment_params)
-        redirect_to city_path(@comment.city)
-      else
-        render :edit
-      end
-    end
-  end
-
   def destroy
     if current_user.id == @comment.user_id || current_user.admin?
       @comment.destroy

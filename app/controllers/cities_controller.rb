@@ -14,8 +14,8 @@ class CitiesController < ApplicationController
     @city.votes.each do |vote|
       if vote.user_id == current_user.id
         @vote = vote
-        if vote.comment.present?
-          @comment = vote.comment
+        if @vote && @vote.comment.present?
+          @comment = @vote.comment
         else
           @comment = Comment.new
         end
@@ -77,7 +77,7 @@ class CitiesController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     if current_user.admin?
       @city.destroy
