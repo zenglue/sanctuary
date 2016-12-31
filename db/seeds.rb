@@ -39,10 +39,10 @@ Vote.all.each do |vote|
     user_id: vote.user_id
     )
     comments.each do |comment|
-      if comment.vote_id.nil?
-        comment.destroy
-      else
+      if comment.vote_id.present?
         comment.save
+      else
+        comment.destroy
       end
     end
   end
