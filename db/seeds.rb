@@ -17,15 +17,15 @@ end
 end
 
 User.all.each do |user|
+  votes = []
   5.times do
-    votes = []
     votes << user.votes.build(
     vote_type: Faker::Number.between(0,1),
     city_id: Faker::Number.between(0,19)
     )
-    votes.each do |vote|
-      vote.save
-    end
+  end
+  votes.each do |vote|
+    vote.save
   end
 end
 
@@ -35,18 +35,18 @@ valid_votes.each do |vote|
 end
 
 Vote.all.each do |vote|
+  comments = []
   2.times do
-    comments = []
     comments << vote.build_comment(
     content: Faker::Hipster.paragraph,
     user_id: vote.user_id
     )
-    comments.each do |comment|
-      if comment.vote_id.present?
-        comment.save
-      else
-        comment.destroy
-      end
+  end
+  comments.each do |comment|
+    if comment.vote_id.present?
+      comment.save
+    else
+      comment.destroy
     end
   end
 end
