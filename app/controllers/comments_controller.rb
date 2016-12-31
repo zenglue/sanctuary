@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       @comment.save
       redirect_to city_path(@comment.city)
     else
-      render :new
+      redirect_to city_path(@comment.city)
     end
   end
 

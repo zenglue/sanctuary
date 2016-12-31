@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :comments
   has_many :votes
   has_many :cities, through: :votes, source: :city
-  has_one :profile
   has_many :upvoted_cities, -> { where "votes.vote_type = 1" }, through: :votes, source: :city
   has_many :downvoted_cities, -> { where "votes.vote_type = 0" }, through: :votes, source: :city
 

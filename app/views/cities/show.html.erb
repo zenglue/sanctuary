@@ -5,11 +5,11 @@
 <strong>upvotes: <%= @city.upvote_count %></strong><br/>
 <strong>downvotes: <%= @city.downvote_count %></strong><br/>
 
-<%= button_to "upvote", upvote_city_vote_path(@city) %>
-<%= button_to "downvote", downvote_city_vote_path(@city) %><br/>
+<%= button_to "upvote", upvote_city_path(@city) %>
+<%= button_to "downvote", downvote_city_path(@city) %><br/>
 
 <% if @vote && !@vote.comment.present?%>
-<%= link_to "Add a comment to your vote", new_vote_comment_path(@vote)%><br><br/>
+<%= render partial: 'comments/form', :locals => {:vote => @vote, :comment => @comment } %>
 <% elsif @vote && @comment.present? %>
 <br><%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>
 <br><%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %><br/>
