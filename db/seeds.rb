@@ -23,15 +23,12 @@ User.all.each do |user|
     vote_type: Faker::Number.between(0,1),
     city_id: Faker::Number.between(0,19)
     )
+    votes.each do |vote|
+      if vote.valid?
+        vote.save
+      end
+    end
   end
-  votes.each do |vote|
-    vote.save
-  end
-end
-
-valid_votes = Vote.select(:user_id, :city_id).distinct
-valid_votes.each do |vote|
-  vote.save
 end
 
 Vote.all.each do |vote|
