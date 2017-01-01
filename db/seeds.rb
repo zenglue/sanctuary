@@ -36,18 +36,12 @@ end
 
 Vote.all.each do |vote|
   comments = []
-  2.times do
-    comments << vote.build_comment(
-    content: Faker::Hipster.paragraph,
-    user_id: vote.user_id
-    )
-  end
+  comments << vote.build_comment(
+  content: Faker::Hipster.paragraph,
+  user_id: vote.user_id
+  )
   comments.each do |comment|
-    if comment.vote_id.present?
-      comment.save
-    else
-      comment.destroy
-    end
+    comment.save
   end
 end
 
