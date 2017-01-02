@@ -33,13 +33,10 @@ end
 
 Vote.all.each do |vote|
   comments = []
-  comments << vote.build_comment(
+  comments << vote.create_comment(
   content: Faker::Hipster.paragraph,
   user_id: vote.user_id
   )
-  comments.each do |comment|
-    comment.save
-  end
 end
 
 City.all.each do |city|
