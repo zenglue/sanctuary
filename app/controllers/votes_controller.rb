@@ -7,7 +7,7 @@ class VotesController < ApplicationController
   def update
     @vote = Vote.find(params[:id])
     if @vote.update(vote_params)
-      if @vote.valid?
+      if @vote.valid? && @vote.comment.valid?
         redirect_to city_path(@vote.city_id), notice: "updated vote or comment"
       else
         render :edit
