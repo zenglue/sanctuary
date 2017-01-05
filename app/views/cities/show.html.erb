@@ -8,7 +8,7 @@
 <%= button_to "upvote", upvote_city_path(@city) %>
 <%= button_to "downvote", downvote_city_path(@city) %><br/>
 
-<% if @vote && !@vote.comment.present?%>
+<% if @vote && !@vote.comment.present? %>
 <%= render partial: 'comments/form', locals: {vote: @vote, comment: @comment } %>
 <% elsif @vote && @comment.present? %>
 <br><%= link_to "Edit your vote or comment", edit_vote_path(@vote) %><br/>

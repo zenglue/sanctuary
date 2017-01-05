@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'about', to: 'application#about', as: 'about'
+  get 'about', to: 'application#about'
 
   root 'cities#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
