@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # post '/cities/:city_id/votes/upvote', to: 'votes#downvote', as: 'downvote_city_vote'
 
   resources :votes do
-    resources :comments
+    resources :comments, only: [:show, :new, :create, :destroy]
   end
 
   resources :users, only: [:index, :show] do
