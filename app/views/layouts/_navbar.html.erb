@@ -1,5 +1,6 @@
 Welcome <%= current_user.username %><br/>
 <br>
+<%= link_to "About Sanctuary Cities", about_path %><br/>
 <%= link_to "All Cities", cities_path %><br/>
 <% if current_user.admin? %>
 <%= link_to "All Users", users_path %><br/>

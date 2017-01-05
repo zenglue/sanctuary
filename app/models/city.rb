@@ -36,9 +36,4 @@ class City < ApplicationRecord
   def rank_by_total_votes
     City.order(vote_count: :desc).find_index(self) + 1
   end
-
-  def vote_balance_column
-    self.upvote_count - self.downvote_count
-  end
-
 end
