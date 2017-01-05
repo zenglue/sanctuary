@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def guest_user
-    User.new(username: "guest")
+    User.new(username: "guest", role: 2)
   end
 end

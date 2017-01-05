@@ -21,7 +21,7 @@ class City < ApplicationRecord
   end
 
   def update_vote_balance
-    self.update(vote_balance: vote_balance)
+    self.update(vote_balance: self.vote_balance)
   end
 
   def upvote_count

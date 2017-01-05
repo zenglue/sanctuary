@@ -41,5 +41,6 @@ end
 
 City.all.each do |city|
   city.vote_count = Vote.where("city_id = ?", city.id).count
+  city.update_vote_balance
   city.save
 end
