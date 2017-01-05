@@ -15,8 +15,7 @@
 <br><%= button_to 'Delete your comment', [ @vote, @comment ], method: :delete %><br/>
 <% end %>
 
-<br><strong>User vote comments:</strong><br/>
-<br>
+<br><strong>User vote comments:</strong><br><br/>
 <% if @city.comments.present? %>
 <% @city.comments.each do |comment|%>
 <p><%= link_to comment.user.username, user_path(comment.user) %>, <%= comment.vote.vote_type %>d : <%= comment.content %><p>
