@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'popular', to: 'cities#popular'
+
   # post '/cities/:city_id/votes/upvote', to: 'votes#upvote', as: 'upvote_city_vote'
   # post '/cities/:city_id/votes/upvote', to: 'votes#downvote', as: 'downvote_city_vote'
 
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   get 'about', to: 'application#about'
+
 
   root 'cities#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

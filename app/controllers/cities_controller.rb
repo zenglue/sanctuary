@@ -39,6 +39,10 @@ class CitiesController < ApplicationController
     end
   end
 
+  def popular
+    @cities = City.popular_cities
+  end
+
   def upvote
     @city = City.find(params[:id])
     @vote = @city.votes.new(vote_type: 1, user_id: current_user.id)

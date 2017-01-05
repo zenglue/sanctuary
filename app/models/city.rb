@@ -6,12 +6,18 @@ class City < ApplicationRecord
   scope :possible_sanctuary, -> {where(official_status: 2)}
   scope :non_sanctuary, -> {where(official_status: 1)}
   scope :unknown, -> {where(official_status: 0)}
+  scope :popular_cities, -> {where("vote_balance > ?", 5)}
   default_scope {order(vote_balance: :desc, vote_count: :desc)}
 
   validates :name, :state, :official_status, presence: true
 
   #offical_status can only be changed by admins
   enum official_status: [:unknown, :non_sancutuary, :possible_sanctuary, :sanctuary]
+
+  # def self.popular_cities
+  #   City.where("vote_balance > ?", 5)
+  # end
+
 
   def self.order_by_votes
     City.order(vote_count: :desc)
