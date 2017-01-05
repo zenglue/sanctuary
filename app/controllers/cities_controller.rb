@@ -45,6 +45,7 @@ class CitiesController < ApplicationController
     if @vote.valid?
       @vote.save
       @city.update_vote_count
+      @city.update_vote_balance
       redirect_to city_path(@city), notice: "Upvoted City"
     else
       redirect_to city_path(@city), alert: "Can only cast one vote per city, or voting is currently limited to signed in users"
